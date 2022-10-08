@@ -7,6 +7,8 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
     id("org.springframework.experimental.aot") version "0.12.1"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.6.21"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.6.21"
 }
 
 group = "com.org"
@@ -19,6 +21,17 @@ configurations {
     }
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
 repositories {
     maven { url = uri("https://repo.spring.io/release") }
     mavenCentral()
